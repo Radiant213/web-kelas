@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npm run vercel-build",
-  "installCommand": "npm install",
-  "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.7.1"
+  "buildCommand": "exit 0",
+  "outputDirectory": "public",
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "vercel-php@0.7.1"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(css|js|images|sounds|storage)/(.+)",
