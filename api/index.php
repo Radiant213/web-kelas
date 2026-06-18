@@ -54,12 +54,16 @@ if (!getenv('MYSQL_ATTR_SSL_CA') || getenv('MYSQL_ATTR_SSL_CA') === '') {
 }
 
 // Boot Laravel
-$compiledViewPath = '/tmp/storage/framework/views';
-if (!is_dir($compiledViewPath)) {
-    mkdir($compiledViewPath, 0755, true);
+$storagePath = '/tmp/storage';
+if (!is_dir($storagePath)) {
+    mkdir($storagePath, 0755, true);
+    mkdir($storagePath . '/framework/cache', 0755, true);
+    mkdir($storagePath . '/framework/views', 0755, true);
+    mkdir($storagePath . '/framework/sessions', 0755, true);
+    mkdir($storagePath . '/logs', 0755, true);
 }
-putenv('VIEW_COMPILED_PATH=' . $compiledViewPath);
-$_ENV['VIEW_COMPILED_PATH'] = $compiledViewPath;
-$_SERVER['VIEW_COMPILED_PATH'] = $compiledViewPath;
+putenv('LARAVEL_STORAGE_PATH=' . $storagePath);
+$_ENV['LARAVEL_STORAGE_PATH'] = $storagePath;
+$_SERVER['LARAVEL_STORAGE_PATH'] = $storagePath;
 
 require __DIR__ . '/../public/index.php';
