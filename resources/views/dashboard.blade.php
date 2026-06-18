@@ -225,7 +225,7 @@
         .hero-section {
             /* Ganti URL ini dengan foto kelas yang asli */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url("{{ $settings && $settings->hero_image ? asset('storage/' . $settings->hero_image) : asset('images/foto-sekelas-pageawal.jpg') }}");
+                url("{{ $settings && $settings->hero_image ? Storage::disk('s3')->url($settings->hero_image) : asset('images/foto-sekelas-pageawal.jpg') }}");
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -758,7 +758,7 @@
             </div>
             <div class="about-image-card">
                 <!-- Foto sekelas -->
-                <img src="{{ $settings && $settings->about_image ? asset('storage/' . $settings->about_image) : asset('images/foto-sekelas-pageTentangKami.jpg') }}"
+                <img src="{{ $settings && $settings->about_image ? Storage::disk('s3')->url($settings->about_image) : asset('images/foto-sekelas-pageTentangKami.jpg') }}"
                     alt="Foto Kelas XI PPLG 2" class="about-image">
             </div>
         </div>
@@ -800,7 +800,7 @@
     <section class="wali-kelas-section" style="background: var(--bg-card); padding: 100px 20px;">
         <div class="about-container">
             <div class="about-image-card" style="transform: rotate(-2deg); background: var(--bg-card);">
-                <img src="{{ $settings && $settings->teacher_image ? asset('storage/' . $settings->teacher_image) : asset('images/FotoWalikelas.jpg') }}" 
+                <img src="{{ $settings && $settings->teacher_image ? Storage::disk('s3')->url($settings->teacher_image) : asset('images/FotoWalikelas.jpg') }}" 
                      alt="Foto Wali Kelas" 
                      class="about-image" 
                      style="height: 400px; object-position: top;">

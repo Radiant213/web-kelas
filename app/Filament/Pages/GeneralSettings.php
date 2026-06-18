@@ -45,7 +45,7 @@ class GeneralSettings extends Page implements HasForms
                             FileUpload::make('hero_image')
                                 ->label('Hero Image')
                                 ->image()
-                                ->disk('public')
+                                ->disk('s3')
                                 ->directory('settings')
                                 ->columnSpanFull(),
                         ])->columnSpan(1),
@@ -56,7 +56,7 @@ class GeneralSettings extends Page implements HasForms
                             FileUpload::make('about_image')
                                 ->label('About Image')
                                 ->image()
-                                ->disk('public')
+                                ->disk('s3')
                                 ->directory('settings')
                                 ->columnSpanFull(),
                         ])->columnSpan(1),
@@ -67,7 +67,7 @@ class GeneralSettings extends Page implements HasForms
                             FileUpload::make('teacher_image')
                                 ->label('Foto Wali Kelas')
                                 ->image()
-                                ->disk('public')
+                                ->disk('s3')
                                 ->directory('settings')
                                 ->columnSpanFull(),
                             Textarea::make('teacher_quote')
