@@ -31,4 +31,12 @@ if (!getenv('MYSQL_ATTR_SSL_CA') || getenv('MYSQL_ATTR_SSL_CA') === '') {
 }
 
 // Boot Laravel
+$compiledViewPath = '/tmp/storage/framework/views';
+if (!is_dir($compiledViewPath)) {
+    mkdir($compiledViewPath, 0755, true);
+}
+putenv('VIEW_COMPILED_PATH=' . $compiledViewPath);
+$_ENV['VIEW_COMPILED_PATH'] = $compiledViewPath;
+$_SERVER['VIEW_COMPILED_PATH'] = $compiledViewPath;
+
 require __DIR__ . '/../public/index.php';
