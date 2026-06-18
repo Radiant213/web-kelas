@@ -12,6 +12,10 @@
   ],
   "routes": [
     {
+      "src": "/livewire/(.*)",
+      "dest": "api/index.php"
+    },
+    {
       "src": "/(css|js|images|sounds|storage)/(.+)",
       "dest": "public/$1/$2"
     },
