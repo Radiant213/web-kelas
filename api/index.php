@@ -14,6 +14,27 @@ $envVars = [
     'AWS_BUCKET', 'AWS_ENDPOINT', 'AWS_URL', 'AWS_USE_PATH_STYLE_ENDPOINT'
 ];
 
+// Parse .env.production directly if it exists
+$envFile = __DIR__ . '/../.env.production';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        $parts = explode('=', $line, 2);
+        if (count($parts) === 2) {
+            $key = trim($parts[0]);
+            $val = trim($parts[1]);
+            // Remove surrounding quotes if they exist
+            if (preg_match('/^"(.*)"$/', $val, $matches) || preg_match("/^'(.*)'$/", $val, $matches)) {
+                $val = $matches[1];
+            }
+            $_ENV[$key] = $val;
+            $_SERVER[$key] = $val;
+            putenv("$key=$val");
+        }
+    }
+}
+
 foreach ($envVars as $key) {
     $value = getenv($key);
     if ($value !== false) {
