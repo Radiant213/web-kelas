@@ -10,20 +10,7 @@
   ],
   "routes": [
     {
-      "src": "/(css|js|images|sounds|storage)/(.+)",
-      "dest": "public/$1/$2"
-    },
-    {
-      "src": "/build/(.+)",
-      "dest": "public/build/$1"
-    },
-    {
-      "src": "/(.*\\.(ico|png|jpg|jpeg|gif|svg|webp|html|txt|js|css|xml|woff|woff2|ttf|eot|map))",
-      "dest": "public/$1"
-    },
-    {
-      "src": "/storage/(.*)",
-      "dest": "public/storage/$1"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
